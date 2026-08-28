@@ -1,0 +1,17 @@
+# Database (contains your test data)
+database/pos.db
+database/pos.db-journal
+database/pos.db-wal
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Environment
+.env   

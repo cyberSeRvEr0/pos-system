@@ -14,7 +14,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'pos_system');
 
 // Base URL
-define('BASE_URL', 'http://localhost/pos-system');
+define('BASE_URL', 'https://your domain here');
 
 // Connect
 try {

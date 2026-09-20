@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^$ login.php [L]
+
+Options -Indexes
+  

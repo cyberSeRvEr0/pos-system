@@ -2,7 +2,7 @@
 require_once 'config/config.php';
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: ' . BASE_URL . '/admin/dashboard.php');
+    header('Location: ' . BASE_URL . '/public/register.php');
     exit;
 }
 
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
-        header('Location: ' . ($user['role'] === 'admin' ? 'admin/dashboard.php' : 'public/register.php'));
+        header('Location: ' . ($user['role'] === 'admin' ? 'public/register.php' : 'admin/dashboard.php'));
         exit;
     }
     $error = 'Invalid username or password';

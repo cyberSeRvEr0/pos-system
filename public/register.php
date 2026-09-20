@@ -24,7 +24,7 @@ foreach ($products as $p) {
 
         .pos-left { flex: 1; display: flex; flex-direction: column; }
         .pos-header { padding: 15px 20px; background: #16213e; display: flex; justify-content: space-between; align-items: center; }
-        .pos-header h2 { font-size: 18px; }
+        .pos-header h2 { font-size: 18px; background:#00e676; border-radius:6px; font-weight:bold; padding:10px 20px; text-decoration:none; }
         .pos-header a { color: #e94560; text-decoration: none; font-size: 13px; }
         .search-bar { padding: 10px 20px; background: #16213e; }
         .search-bar input { width: 100%; padding: 10px 15px; border: 1px solid #0f3460; border-radius: 6px; background: #1a1a2e; color: #fff; font-size: 14px; }
@@ -93,6 +93,7 @@ foreach ($products as $p) {
     <div class="pos-left">
         <div class="pos-header">
             <h2><?= htmlspecialchars($store_name) ?> — POS</h2>
+            <a href="../admin/dashboard.php" style="background:#00e676;color:#000;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px;">Go to Dashboard<a/>
             <a href="../logout.php">Logout</a>
         </div>
         <div class="search-bar">
@@ -161,6 +162,14 @@ foreach ($products as $p) {
     let paymentMethod = 'cash';
 
     // Barcode / search
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const val = this.value.trim().toLowerCase();
+        const cards = document.querySelectorAll('.product-card');
+        cards.forEach(c => {
+            c.style.display = c.dataset.name.toLowerCase().includes(val) ? '' : 'none';
+        });
+    });
+
     document.getElementById('searchInput').addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             const val = this.value.trim();
@@ -168,14 +177,10 @@ foreach ($products as $p) {
             if (card) {
                 addToCart(parseInt(card.dataset.id), card.dataset.name, parseFloat(card.dataset.price));
                 this.value = '';
-                return;
+                this.dispatchEvent(new Event('input'));
             }
         }
-        const cards = document.querySelectorAll('.product-card');
-        cards.forEach(c => {
-            c.style.display = c.dataset.name.toLowerCase().includes(val.toLowerCase()) ? '' : 'none';
-        });
-    });
+    });   
 
     function addToCart(id, name, price) {
         const existing = cart.find(i => i.id === id);

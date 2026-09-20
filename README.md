@@ -43,13 +43,15 @@ define('DB_USER', 'root');
 define('DB_PASS', 'your_password');
 define('DB_NAME', 'pos_system');   
 
+```
+
 ### File Structure
 
 pos-system/
 ├── config/
 │   └── config.php          ← DB connection & helpers
 ├── database/
-│   └── pos.db              ← SQLite database (created on install)
+│   └── (pos.db is auto-created during install)   
 ├── public/
 │   ├── register.php        ← POS terminal
 │   └── checkout.php        ← Sale processing API
@@ -63,7 +65,9 @@ pos-system/
 ├── login.php               ← Login
 ├── logout.php              ← Session destroy
 ├── install.php             ← One-time installer
-└── README.md   
+├── .htaccess
+├── LICENSE.txt
+└── README.md     
 
 Barcode Scanners
 Any USB barcode scanner works out of the box. Connect the scanner, click the search bar on the POS screen, and scan. The product is added to the cart automatically. No drivers or extra software needed.
